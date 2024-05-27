@@ -278,7 +278,7 @@ fig.show()
 Output:
 ![cleaned_distribution](./img/cleaned_distribution.png)
 
-We can further visualize it more clearly using the plotly function graph:
+We can enhance clarity and depth in our visualization by leveraging Plotly's graph function we created earlier:
 
 ```python
 fig = create_game_rounds_by_version_plot(game_data)
