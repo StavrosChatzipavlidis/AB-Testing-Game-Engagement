@@ -589,6 +589,8 @@ Based on the p-value of 0.70, we fail to reject the null hypothesis (H0), indica
 
 With a p-value of 0.01, we reject the null hypothesis (H0), indicating a significant difference in player retention between the gate_30 and gate_40 versions at Week 7. The effect size (Cohen's d) of 762.46 further emphasizes this difference. This suggests that the gate_30 version exhibits a notably different retention pattern compared to the gate_40 version at this stage, indicating potential differences in player engagement and behavior over time.
 
+
+**NOTE:**
 In the case of Week 1 retention, despite the high Cohen's d of 4459, the high p-value of 0.70 suggests that the observed difference in retention between the gate_30 and gate_40 versions may be due to random variability rather than a meaningful difference. Therefore, while there may be a large effect size, the lack of statistical significance implies that the observed difference in retention at Week 1 is not practically meaningful.
 
 Conversely, for Week 7 retention, the low p-value of 0.01, along with the high Cohen's d of 762.46, indicates a significant difference in retention between the two versions. This suggests that the observed difference in retention at Week 7 is both statistically and practically meaningful, with the effect size contributing to the significance of the findings.
