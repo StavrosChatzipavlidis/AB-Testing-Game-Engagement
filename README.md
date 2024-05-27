@@ -339,6 +339,7 @@ Output:
 This section analyzes the retention rates after 1 day and 7 days for the two A/B groups (gate_30 and gate_40) using a grouped bar chart visualization.
 
 <details>
+
 ```python
 retention_by_group = game_data.groupby("version")[["retention_1", "retention_7"]].mean()
 retention_by_group_transposed = retention_by_group.T
@@ -352,6 +353,7 @@ plt.legend(["gate_30", "gate_40"])
 plt.grid(axis='y', linestyle='--', alpha=0.7)
 plt.show()
 ```
+
 </details>
 
 ![retentionAB](./img/retentionAB.png)
