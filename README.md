@@ -232,6 +232,7 @@ Output:
 The provided code snippet generates two bar plots to compare the retention rates of users in the "gate_30" and "gate_40" versions of the mobile game. These plots help visualize the retention rates after 1 day and 7 days, respectively.
 
 <details>
+
 ```python
 # Create subplots
 fig, axs = plt.subplots(1, 2, figsize=(14, 6))
