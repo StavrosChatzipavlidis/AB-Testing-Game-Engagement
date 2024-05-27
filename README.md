@@ -74,3 +74,44 @@ Output:
     - 95% of players engaged in up to 221 rounds.
     - 99% of players engaged in up to 493 rounds.
 - Outliers: A few outliers played as many as 49,854 rounds.
+
+## Summary Statistics for Game Rounds Grouped by A/B Groups
+
+```python
+group_stats = game_data.groupby("version")['sum_gamerounds'].agg(
+    count=lambda x: len(x),
+    median=lambda x: np.median(x),
+    mean=lambda x: np.mean(x),
+    std=lambda x: np.std(x),
+    max=lambda x: np.max(x)
+).reset_index()
+
+colors = {'gate_30': 'lightblue', 'gate_40': 'lightcoral',}
+
+plt.figure(figsize=(12, 2))
+plt.axis('off')
+table = plt.table(cellText=group_stats.values,
+                  colLabels=group_stats.columns,
+                  cellLoc='center',
+                  rowLoc='center',
+                  loc='center',
+                  cellColours=[[colors.get(version, 'lightgrey')] * len(group_stats.columns) for version in group_stats['version']])
+
+table.auto_set_font_size(False)
+table.set_fontsize(10)
+
+plt.title("Summary statistics by A/B groups for 'sum_gamerounds'", fontsize=14)
+
+plt.show()
+```
+
+Output:
+![SummaryAB](./img/summaryAB.png)
+
+Conclusions:
+
+- Median and Mean: Both groups have similar median and mean values, suggesting that typical user engagement (in terms of game rounds played) is not drastically different between the two versions.
+
+- Variability: The control group (gate_30) shows much higher variability in user engagement. This could be due to a few highly engaged users who play a large number of game rounds, which is reflected in the very high maximum value.
+
+- Outliers: The presence of a user who played 49,854 rounds in the control group (gate_30) significantly impacts the standard deviation and maximum values. Such outliers can skew the data and should be considered when interpreting the results.
