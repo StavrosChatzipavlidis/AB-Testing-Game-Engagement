@@ -77,6 +77,8 @@ Output:
 
 ## Summary Statistics for Game Rounds Grouped by A/B Groups
 
+The provided summary statistics give us insights into the distribution of game rounds played by users in the control group (gate_30) and the treatment group (gate_40).
+
 ```python
 group_stats = game_data.groupby("version")['sum_gamerounds'].agg(
     count=lambda x: len(x),
@@ -115,3 +117,67 @@ Conclusions:
 - Variability: The control group (gate_30) shows much higher variability in user engagement. This could be due to a few highly engaged users who play a large number of game rounds, which is reflected in the very high maximum value.
 
 - Outliers: The presence of a user who played 49,854 rounds in the control group (gate_30) significantly impacts the standard deviation and maximum values. Such outliers can skew the data and should be considered when interpreting the results.
+
+
+## Visualization of Game Rounds by Version
+
+### Function to Create the Plot
+
+The following function creates an interactive plot using Plotly to visualize the number of game rounds played by users, grouped by the version of the app. The plot includes dropdown menus to toggle between different versions or view all versions simultaneously.
+
+<details>
+
+```python
+import plotly.graph_objects as go
+
+def create_game_rounds_by_version_plot(game_data):
+    traces = []
+    for version in game_data['version'].unique():
+        filtered_data = game_data[game_data['version'] == version]
+        trace = go.Scatter(
+            x=filtered_data.index,
+            y=filtered_data.sum_gamerounds,
+            mode='lines',
+            name=version,
+            legendgroup=version
+        )
+        traces.append(trace)
+
+    layout = go.Layout(
+        title='Game Rounds by Version',
+        xaxis=dict(title='Index'),
+        yaxis=dict(title='Sum Gamerounds'),
+        legend=dict(x=1.1, y=1),
+        updatemenus=[
+            dict(
+                buttons=[
+                    dict(
+                        label="All",
+                        method="update",
+                        args=[{"visible": [True] * len(traces)},
+                              {"title": "Game Rounds by Version - All"}]
+                    ),
+                    *[
+                        dict(
+                            label=version,
+                            method="update",
+                            args=[{"visible": [trace.name == version for trace in traces]},
+                                  {"title": f"Game Rounds by Version - {version}"}]
+                        ) for version in game_data['version'].unique()
+                    ]
+                ],
+                direction="down",
+                pad={"r": 10, "t": 10},
+                showactive=True,
+                x=1,
+                xanchor="right",
+                y=1,
+                yanchor="top"
+            )
+        ]
+    )
+
+    fig = go.Figure(data=traces, layout=layout)
+    return fig
+```
+</details>
