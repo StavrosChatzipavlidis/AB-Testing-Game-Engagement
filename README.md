@@ -513,7 +513,9 @@ Our objective is to discern any substantial discrepancies between these groups c
 Let's proceed to examine the A/B test results for retention at Week 1 and Week 7 separately.
 
 Code snippet:
+
 <details>
+
 ```python
 def perform_ab_test(data, group_col, target_col, retention_day, alpha=0.05, effect_size=None, power=None):
     # Splitting A/B groups
