@@ -118,8 +118,69 @@ Conclusions:
 
 - Outliers: The presence of a user who played 49,854 rounds in the control group (gate_30) significantly impacts the standard deviation and maximum values. Such outliers can skew the data and should be considered when interpreting the results.
 
+## Visualization: Distribution of Game Rounds and A/B Groups Analysis
 
-## Visualization of Game Rounds by Version
+In this section, we explore the distribution of game rounds played by users across different versions of the game, gate_30 and gate_40. Additionally, we analyze the A/B groups' characteristics using box plots.
+
+- Distribution of Game Rounds (A) and (B)
+	- The first two subplots illustrate the distribution of game rounds played by users for gate_30 and gate_40 versions, respectively. Each bar represents the frequency of game rounds within specific bins. The color blue represents gate_30, while red represents gate_40. These visualizations provide insights into the distribution patterns of game rounds for each version.
+
+- A/B Groups Boxplot
+	- The third subplot presents box plots for both A/B groups, allowing for a comparative analysis of the game rounds distribution between gate_30 and gate_40. Each box plot displays the distribution of game rounds for a particular version, showing the median, quartiles, and any outliers.
+
+An interesting observation from the box plots is the presence of an extreme outlier in the gate_30 version, where a user played 50,000 game rounds. This outlier is visualized as a data point outside the whiskers of the box plot, indicating its significant deviation from the typical distribution. Such outliers may influence statistical analyses and should be carefully considered in data interpretation.
+
+Let's visualize the distribution of game rounds and A/B groups analysis:
+<details>
+
+```python
+def create_game_rounds_plot(game_data):
+    fig = make_subplots(rows=1, cols=3, subplot_titles=("Distribution of Game Rounds (A)", 
+                                                        "Distribution of Game Rounds (B)", 
+                                                        "A/B Groups Boxplot"))
+
+    colors = {'gate_30': 'blue', 'gate_40': 'red'}
+
+    # Bar charts for Gate 30 and Gate 40
+    for version, subplot in zip(["gate_30", "gate_40"], [1, 2]):
+        filtered_data = game_data[game_data.version == version]
+        counts, bins = np.histogram(filtered_data.sum_gamerounds, bins=20)
+        fig.add_trace(go.Bar(x=bins[:-1], y=counts, marker_color=colors[version], name=version), row=1, col=subplot)
+
+    # Boxplot for A/B groups with the same color as the respective bar chart
+    for version in ["gate_30", "gate_40"]:
+        filtered_data = game_data[game_data.version == version]
+        fig.add_trace(go.Box(x=[version] * len(filtered_data), 
+                             y=filtered_data.sum_gamerounds,
+                             marker_color=colors[version],
+                             boxpoints='outliers',
+                             boxmean=False,
+                             showlegend=False), 
+                      row=1, col=3)
+
+    fig.update_xaxes(title_text="Gamerounds", row=1, col=1)
+    fig.update_xaxes(title_text="Gamerounds", row=1, col=2)
+    fig.update_xaxes(title_text="A/B Groups", row=1, col=3)
+
+    fig.update_yaxes(title_text="Frequency", row=1, col=1, title_standoff=1)
+    fig.update_yaxes(title_text="Frequency", row=1, col=2, title_standoff=1)
+    fig.update_yaxes(title_text="Sum Gamerounds", row=1, col=3, title_standoff=1)
+
+    fig.update_layout(height=500,
+                      width=1000,
+                      showlegend=True)
+
+    return fig
+fig = create_game_rounds_plot(game_data)
+fig.show()
+```
+</details>
+
+Output:
+![distr_boxplots](./img/distr_boxplots.png)
+
+
+## Visualization: Game Rounds by Version
 
 ### Function to Create the Plot
 
