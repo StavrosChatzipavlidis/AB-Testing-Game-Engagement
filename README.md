@@ -555,7 +555,7 @@ Interpretation:
 
 Conclusion:
 
-The A/B test results suggest that the modifications introduced in the gate_40 version do not have a significant impact on user engagement (game rounds played) compared to the baseline gate_30 version. However, further analysis may be warranted to explore other factors influencing user behavior and retention.
+The A/B test results suggest that the modifications introduced in the gate_40 version do not have a significant impact on user engagement (game rounds played) compared to the baseline gate_30 version.
 
 ## A/B Testing for Player Retention at Week 1 and Week 7
 
