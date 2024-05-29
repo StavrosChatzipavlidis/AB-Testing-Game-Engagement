@@ -468,20 +468,20 @@ This section conducts an A/B test to compare the game rounds played between two 
 The perform_ab_test() function conducts the following steps:
 
 1. Data Preparation:
-- Splits the data into two groups: Group A (gate_30) and Group B (gate_40).
+	- Splits the data into two groups: Group A (gate_30) and Group B (gate_40).
 2. Normality Check:
-- Assesses the normality assumption of the data using the Shapiro-Wilk test for both groups.
+	- Assesses the normality assumption of the data using the Shapiro-Wilk test for both groups.
 3. Test Selection:
-- Based on the normality assessment:
-	- If both groups follow a normal distribution, a parametric test (t-test) is performed.
+	- Based on the normality assessment:
+		- If both groups follow a normal distribution, a parametric test (t-test) is performed.
 		- If not, a non-parametric test (Mann-Whitney U test) is conducted.
 4. Effect Size Calculation:
-- Calculates the effect size (Cohen's d) to quantify the magnitude of the difference between the two groups.
+	- Calculates the effect size (Cohen's d) to quantify the magnitude of the difference between the two groups.
 5. Interpretation:
-- Determines whether to reject or fail to reject the null hypothesis based on the p-value (significance level α).
-- Provides a comment indicating whether the A/B groups are similar or not.
+	- Determines whether to reject or fail to reject the null hypothesis based on the p-value (significance level α).
+	- Provides a comment indicating whether the A/B groups are similar or not.
 6. Visual Representation:
-- Presents the test results in a table format for easy interpretation.
+	- Presents the test results in a table format for easy interpretation.
 
 Code snippet:
 ```python
