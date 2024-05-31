@@ -7,7 +7,6 @@ A/B testing, also known as split testing, is a method of comparing two versions 
 ### Key Concepts
 - Control Group: The group that experiences the original version.
 - Treatment Group: The group that experiences the modified version.
-- Metrics: Quantitative measures used to compare the performance of the two versions (e.g., click-through rate, conversion rate, retention rate).
 
 ## Project Overview
 
