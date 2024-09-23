@@ -1,5 +1,7 @@
 # A/B Testing for Mobile Game Retention
 
+This project involved designing and conducting A/B tests to evaluate the effectiveness of different game features on player retention rates in a mobile game. By segmenting users and analyzing behavioral metrics, the study aimed to identify which variations led to improved engagement and longer play sessions.
+
 ## Introduction to A/B Testing
 
 A/B testing, also known as split testing, is a method of comparing two versions of a webpage, app, or product to determine which one performs better. This involves splitting users into two groups: Group A, which uses the original version (control group), and Group B, which uses a modified version (treatment group). The performance of both versions is then measured using key metrics to identify which version yields better results.
